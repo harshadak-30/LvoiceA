@@ -1,0 +1,25 @@
+# Backend Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY backend/package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy source code
+COPY backend/ .
+
+# Create .env file from environment variables
+RUN echo "PORT=${PORT:-3000}" > .env
+RUN echo "MONGODB_URI=${MONGODB_URI}" >> .env
+RUN echo "JWT_SECRET=${JWT_SECRET}" >> .env
+RUN echo "NODE_ENV=${NODE_ENV:-production}" >> .env
+
+# Expose port
+EXPOSE 3000
+
+# Start the application
+CMD ["node", "server.js"]
