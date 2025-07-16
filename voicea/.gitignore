@@ -9,7 +9,10 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
+.env
+*.log
+uploads/videos/
+.DS_Store
 # testing
 /coverage
 
