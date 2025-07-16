@@ -13,8 +13,7 @@ app.use(cors({ origin: "*", methods: ["GET", "POST", "DELETE"], allowedHeaders: 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 app.use(morgan("dev")); 
-mongoose
-  .connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
